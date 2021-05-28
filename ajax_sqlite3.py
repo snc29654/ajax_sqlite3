@@ -6,7 +6,7 @@ from pyramid.response import Response
 import signal
 import sqlite3
 from contextlib import closing
-dbname = 'ajax_sqlite3.db'
+dbname = '../ajax_sqlite3.db'
 
 #mainで定義されており  javascriptから受信したら実行されます
 def hello_world(request):
