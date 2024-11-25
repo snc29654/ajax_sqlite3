@@ -62,23 +62,8 @@ with closing(sqlite3.connect(dbname)) as conn:
     (date, name, weather, kind, zip_code,Contents)
     ]
     c.executemany(insert_sql, users)
-    """
-    find_data=[]
-    
-    select_sql = 'select * from users'
-    try:
-        for row in c.execute(select_sql):
-            find_data.append(row)
-    except:
-        print("data not found")
-    """
-
     conn.commit()
 
 print("Content-type: text/html\n")
-
-
-
-
 
 print(find_data)
