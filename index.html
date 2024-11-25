@@ -5,12 +5,12 @@
     <title>タイトル python -m http.server --cgi ;  http://localhost:8000/</title>
 </head>
 <body>
-    <button type="button" onclick="myfunc2()">検索実行</button>
+    <button type="button" onclick="func_search()">検索実行</button>
 
     <label for="area">下記に検索ワードを入れてください</label>
     <br>
     <input type="text" id="text2" size="80" value="" /><br>
-    <button type="button"  onclick="myfunc()" >DBのすべてを表示 </button>
+    <button type="button"  onclick="func_all()" >DBのすべてを表示 </button>
 
 
     <p id="inbox"></p>
@@ -18,7 +18,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
 
 <script>
-    function myfunc() {
+    function func_all() {
         let str2 = document.getElementById("text2").value;
         if(str2==""){
             str2 = "";
@@ -26,7 +26,7 @@
 
         $.ajax({
 
-            url:'./cgi-bin/sample2.py',
+            url:'./cgi-bin/view_all.py',
             type:'POST',
             data:{sent2:str2}
         })
@@ -40,7 +40,7 @@
             smp.innerHTML = "failed";
         });
         }
-    function  myfunc2(){
+    function  func_search(){
         let str2 = document.getElementById("text2").value;
         if(str2==""){
             str2 = "";
@@ -49,7 +49,7 @@
 
         $.ajax({
 
-            url:'./cgi-bin/sample.py',
+            url:'./cgi-bin/search.py',
             type:'POST',
             data:{sent2:str2}
         })
