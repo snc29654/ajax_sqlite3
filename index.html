@@ -6,7 +6,7 @@
 </head>
 <body>
     <button type="button" >検索実行</button>
-
+    <button type="button"  onclick="myfunc()" >all </button>
 
     <label for="area">下記に検索ワードを入れてください</label>
     <br>
@@ -18,6 +18,28 @@
     <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
 
 <script>
+    function myfunc() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/sample2.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+        }
     function func_a(){
         let str2 = document.getElementById("text2").value;
         if(str2==""){
