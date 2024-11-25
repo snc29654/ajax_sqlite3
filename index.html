@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タイトル python -m http.server --cgi ;  http://localhost:8000/</title>
+</head>
+<body>
+    <button type="button" >検索実行</button>
+
+
+    <label for="area">下記に検索ワードを入れてください</label>
+    <br>
+    <input type="text" id="text2" size="80" value="" />
+
+
+    <p id="inbox"></p>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
+
+<script>
+    function func_a(){
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+
+
+        $.ajax({
+
+            url:'./cgi-bin/sample.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    func_a();
+
+    $('select').change(function() {
+        func_a();
+    });
+
+    $(function(){
+        
+    $("button").click(function(){
+        func_a();
+    });
+});
+
+
+</script>
+
+</body>
+</html>
+
