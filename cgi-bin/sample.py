@@ -61,8 +61,8 @@ with closing(sqlite3.connect(dbname)) as conn:
     users = [
     (date, name, weather, kind, zip_code,Contents)
     ]
-    c.executemany(insert_sql, users)
-
+    #c.executemany(insert_sql, users)
+    find_data=[]
     
     select_sql = 'select * from users'
     try:
