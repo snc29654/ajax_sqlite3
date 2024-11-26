@@ -11,6 +11,7 @@
     <br>
     <input type="text" id="text2" size="80" value="" /><br>
     <button type="button"  onclick="func_all()" >DBのすべてを表示 </button>
+    <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
     <button type="button"  onclick="func_last()" >DBの最後を表示 </button><br>
     <button type="button"  onclick="func_del()" >DBの1レコード削除 </button>
 
@@ -43,8 +44,34 @@
             var smp=document.getElementById("inbox");
             smp.innerHTML = "failed";
         });
+    }
+
+    function func_head() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
         }
-        function func_last() {
+
+        $.ajax({
+
+            url:'./cgi-bin/db_view_head.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+
+    function func_last() {
         let str2 = document.getElementById("text2").value;
         if(str2==""){
             str2 = "";
@@ -65,7 +92,7 @@
             var smp=document.getElementById("inbox");
             smp.innerHTML = "failed";
         });
-        }
+    }
 
 
     function  func_search(){
