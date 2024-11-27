@@ -14,6 +14,7 @@
     <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
     <button type="button"  onclick="func_last()" >DBの最後を表示 </button><br>
     <button type="button"  onclick="func_del()" >DBの1レコード削除 </button>
+    <button type="button"  onclick="func_one()" >DBの1レコード表示 </button>
 
     レコード番号<input type="text" id="text3" size="10" value="" /><br>
 
@@ -93,6 +94,32 @@
             smp.innerHTML = "failed";
         });
     }
+
+
+
+    function func_one() {
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_view_one.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
 
 
     function  func_search(){
