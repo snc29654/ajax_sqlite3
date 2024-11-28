@@ -5,7 +5,7 @@
     <title>タイトル python -m http.server --cgi ;  http://localhost:8000/</title>
 </head>
 <body>
-    <button type="button" onclick="func_search()">検索実行</button>
+    <button type="button" style="width:100px;height:50px" onclick="func_search()">検索実行</button>
 
     <label for="area">下記に検索ワードを入れてください</label>
     <br>
@@ -151,9 +151,7 @@
 
     function  func_news(){
         let str2 = document.getElementById("text2").value;
-        if(str2==""){
-            str2 = "https://news.yahoo.co.jp/flash";
-        }
+        str2 = "https://news.yahoo.co.jp/flash";
 
 
         $.ajax({
