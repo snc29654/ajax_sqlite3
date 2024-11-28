@@ -39,7 +39,7 @@ cgitb.enable()
 form=cgi.FieldStorage()
 zip_code=form.getvalue("sent2")
 
-find_data=data_print("https://news.yahoo.co.jp/flash")
+find_data=data_print(zip_code)
 
 date = datetime.date.today()
 

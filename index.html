@@ -12,8 +12,17 @@
     <input type="text" id="text2" size="80" value="" /><br>
     <button type="button"  onclick="func_all()" >DBのすべてを表示 </button>
     <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
-    <button type="button"  onclick="func_last()" >DBの最後を表示 </button>
-    <button type="button"  onclick="func_news()" >ニュース速報 </button><br>
+    <button type="button"  onclick="func_last()" >DBの最後を表示 </button><br>
+    <button type="button"  onclick="func_news()" >ニュース</button>
+    <select name="scrapeaction" id="scrapeaction">
+        <option value="https://news.yahoo.co.jp/flash">速報</option>
+        <option value="https://news.yahoo.co.jp/topics/top-picks">yahooトップ</option>
+        <option value="https://news.yahoo.co.jp/categories/entertainment">yahooエンタメ</option>
+        <option value="https://news.yahoo.co.jp/categories/sports">yahooスポーツ</option>
+        <option value="https://news.yahoo.co.jp/categories/business">yahoo　経済</option>
+        <option value="https://news.yahoo.co.jp/categories/it">yahoo　IT</option>
+    </select><br>
+
     <button type="button"  onclick="func_del()" >DBの1レコード削除 </button>
     <button type="button"  onclick="func_one()" >DBの1レコード表示 </button>
 
@@ -151,8 +160,8 @@
 
     function  func_news(){
         let str2 = document.getElementById("text2").value;
-        str2 = "https://news.yahoo.co.jp/flash";
 
+        str2 = scrapeaction.value;
 
         $.ajax({
 
