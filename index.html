@@ -12,7 +12,8 @@
     <input type="text" id="text2" size="80" value="" /><br>
     <button type="button"  onclick="func_all()" >DBのすべてを表示 </button>
     <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
-    <button type="button"  onclick="func_last()" >DBの最後を表示 </button><br>
+    <button type="button"  onclick="func_last()" >DBの最後を表示 </button>
+    <button type="button"  onclick="func_db_search()" >DB内を検索 </button><br>
     <button type="button"  onclick="func_news()" >ニュース</button>
     <select name="scrapeaction" id="scrapeaction">
         <option value="https://news.yahoo.co.jp/flash">速報</option>
@@ -56,6 +57,30 @@
             smp.innerHTML = "failed";
         });
     }
+
+    function func_db_search() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_search.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
 
     function func_head() {
         let str2 = document.getElementById("text2").value;
