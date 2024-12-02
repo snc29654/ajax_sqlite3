@@ -32,13 +32,21 @@
     <button type="button"  onclick="func_memo()" >メモの記録(DB) </button><br>
     メモ題名<input type="text" id="text5" size="20" value="" /><br>
     <textarea id="text4" name="Contents" ROWS=10 COLS=80></textarea><br>
-
+    <input class="button2"  type="button" value="クリア" onclick="clearTextarea()" >
 
     <p id="inbox"></p>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
 
 <script>
+
+    function clearTextarea() {
+	    var textareaForm = document.getElementById("text4");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text5");
+        textareaForm.value = '';
+    }
+
     function func_memo() {
         let str2 = document.getElementById("text4").value;
         if(str2==""){
