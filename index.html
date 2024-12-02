@@ -14,7 +14,8 @@
     <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
     <button type="button"  onclick="func_last()" >DBの最後を表示 </button>
     <button type="button"  onclick="func_db_search()" >DB内を検索 </button><br>
-    <button type="button"  onclick="func_news()" >ニュース</button>
+    <button type="button"  onclick="func_news()" >ニュース</button>URLが優先<br>
+    URL<input type="text" id="text6" size="75" value="" /><br>
     <select name="scrapeaction" id="scrapeaction">
         <option value="https://news.yahoo.co.jp/flash">速報</option>
         <option value="https://news.yahoo.co.jp/topics/top-picks">yahooトップ</option>
@@ -226,9 +227,11 @@
     }
 
     function  func_news(){
-        let str2 = document.getElementById("text2").value;
+        let str2 = document.getElementById("text6").value;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
 
-        str2 = scrapeaction.value;
 
         $.ajax({
 
