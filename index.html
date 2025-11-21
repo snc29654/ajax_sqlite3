@@ -18,12 +18,27 @@
     <button type="button"  onclick="func_news()" >ニュース</button>URLが優先<br>
     URL<input type="text" id="text6" size="75" value="" /><br>
     <select name="scrapeaction" id="scrapeaction">
+        <option value="https://kandorastart.com/karyu">華流ドラマ（中国・台湾ドラマ）</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/news">アクセスランキング</option>
+        <option value="https://news.yahoo.co.jp/polls">みんなの意見</option>
+        <option value="https://news.yahoo.co.jp/ranking/comment">コメントランキング</option>
+        <option value="https://weather.yahoo.co.jp/weather/">天気</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/magazine">雑誌</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/photo">写真</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/photo/local">地域</option>
+        <option value="https://news.yahoo.co.jp/categories/science">科学</option>
+        <option value="https://news.yahoo.co.jp/live">ライブ</option>
+        <option value="https://chiebukuro.yahoo.co.jp/?fr=ytop_menu">知恵袋</option>
+        <option value="https://newswitch.jp/articles/latest">日刊工業新聞</option>
         <option value="https://news.yahoo.co.jp/flash">速報</option>
         <option value="https://news.yahoo.co.jp/topics/top-picks">yahooトップ</option>
         <option value="https://news.yahoo.co.jp/categories/entertainment">yahooエンタメ</option>
         <option value="https://news.yahoo.co.jp/categories/sports">yahooスポーツ</option>
         <option value="https://news.yahoo.co.jp/categories/business">yahoo　経済</option>
         <option value="https://news.yahoo.co.jp/categories/it">yahoo　IT</option>
+        <option value="https://www.nikkansports.com/">日刊スポーツ</option>
+        <option value="https://sports.yahoo.co.jp/list/news/mlb?genre=mlb">MLBニュース</option>
+        <option value="https://www.nikkei.com/business/net-media/">日経ビジネス</option>
     </select><br>
 
     <button type="button"  onclick="func_del()" >DBの1レコード削除 </button>
@@ -252,9 +267,61 @@
 
 
     }
+    function  func_news_next(url,comment){
+        let str2 = url;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_news.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
 
     function  func_list(){
         let str2 = document.getElementById("text6").value;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_list.py',
+            type:'POST',
+            data:{sent2:str2}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+
+    function  func_list_next(url,comment){
+        let str2 = url;
         if(str2==""){
             str2 = scrapeaction.value;
         }
@@ -303,22 +370,7 @@
             var smp=document.getElementById("inbox");
             smp.innerHTML = "failed";
         });
-
-
     }
-
-
-
-    $('select').change(function() {
-        func_a();
-    });
-
-    $(function(){
-        
-    $("button").click(function(){
-        func_a();
-    });
-});
 
 
 </script>

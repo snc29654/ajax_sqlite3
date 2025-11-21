@@ -66,6 +66,27 @@ def copy_link(url):
     text = ""
     for result in results:
         text +=  "<a href= \"" + result["url"] + "\"</a>"+result["text"] + "\t" +"<br>" +"\n"   
+
+        text +=  "<a>"   
+
+        text+=" <input value=\"scrape\" style=\"background-color:gray\" onclick=\"func_news_next("
+        text+=repr(result["url"])
+        text+=","
+        text+=repr(result["text"])
+        text+=")  \"  type=\"button\"></input>"
+
+        text +=  "</a>"   
+        text +=  "<a>"
+
+        text+=" <input value=\"next\" style=\"background-color:gray\" onclick=\"func_list_next("
+        text+=repr(result["url"])
+        text+=","
+        text+=repr(result["text"])
+        text+=")  \"  type=\"button\"></input>"
+
+        text +=  "</a>"
+
+
     return(text)
 
 
